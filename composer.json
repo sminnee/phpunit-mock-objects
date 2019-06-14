@@ -1,6 +1,6 @@
 {
-    "name": "phpunit/phpunit-mock-objects",
-    "description": "Mock Object library for PHPUnit",
+    "name": "sminnee/phpunit-mock-objects",
+    "description": "Mock Object library for PHPUnit (fork to add PHP 7.4 support to 3.4)",
     "type": "library",
     "keywords": [
         "xunit",
@@ -18,6 +18,9 @@
     "support": {
         "issues": "https://github.com/sebastianbergmann/phpunit-mock-objects/issues",
         "irc": "irc://irc.freenode.net/phpunit"
+    },
+    "provide": {
+        "phpunit/phpunit-mock-objects": "3.4.5"
     },
     "require": {
         "php": "^5.6 || ^7.0",
