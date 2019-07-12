@@ -19,9 +19,6 @@
         "issues": "https://github.com/sebastianbergmann/phpunit-mock-objects/issues",
         "irc": "irc://irc.freenode.net/phpunit"
     },
-    "provide": {
-        "phpunit/phpunit-mock-objects": "3.4.5"
-    },
     "replace": {
         "phpunit/phpunit-mock-objects": "3.4.4"
     },
