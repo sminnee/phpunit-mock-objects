@@ -1201,36 +1201,44 @@ class PHPUnit_Framework_MockObject_Generator
                         $typeStr = $typeObj->getName();
                     }
                 }
-                if ($typeStr !== null && $typeStr !== 'self') {
+                if ($typeStr !== null) {
                     if (version_compare(PHP_VERSION, '7.1', '>=')
                         && $parameter->allowsNull()
                         && !$parameter->isVariadic()) {
                         $nullable = '?';
                     }
 
-                    $typeDeclaration = $typeStr . ' ';
-                } elseif ($parameter->isArray()) {
-                    $typeDeclaration = 'array ';
-                } elseif ($parameter->isCallable()) {
-                    $typeDeclaration = 'callable ';
-                } else {
-                    try {
-                        $class = $parameter->getClass();
-                    } catch (ReflectionException $e) {
-                        throw new PHPUnit_Framework_MockObject_RuntimeException(
-                            sprintf(
-                                'Cannot mock %s::%s() because a class or ' .
-                                'interface used in the signature is not loaded',
-                                $method->getDeclaringClass()->getName(),
-                                $method->getName()
-                            ),
-                            0,
-                            $e
-                        );
+                    if ($typeStr === 'self') {
+                        $typeStr = $method->getDeclaringClass()->getName();
                     }
 
-                    if ($class !== null) {
-                        $typeDeclaration = $class->getName() . ' ';
+                    $typeDeclaration = $typeStr . ' ';
+
+                // This code is necessary for PHP 5.6 but breaks PHP 8
+                } elseif (version_compare(PHP_VERSION, '7', '<')) {
+                    if ($parameter->isArray()) {
+                    $typeDeclaration = 'array ';
+                    } elseif ($parameter->isCallable()) {
+                        $typeDeclaration = 'callable ';
+                    } else {
+                        try {
+                            $class = $parameter->getClass();
+                        } catch (ReflectionException $e) {
+                            throw new PHPUnit_Framework_MockObject_RuntimeException(
+                                sprintf(
+                                    'Cannot mock %s::%s() because a class or ' .
+                                    'interface used in the signature is not loaded',
+                                    $method->getDeclaringClass()->getName(),
+                                    $method->getName()
+                                ),
+                                0,
+                                $e
+                            );
+                        }
+
+                        if ($class !== null) {
+                            $typeDeclaration = $class->getName() . ' ';
+                        }
                     }
                 }
 
