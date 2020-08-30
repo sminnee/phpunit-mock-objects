@@ -1,10 +1,12 @@
-[![Latest Stable Version](https://img.shields.io/packagist/v/phpunit/phpunit-mock-objects.svg?style=flat-square)](https://packagist.org/packages/phpunit/phpunit-mock-objects)
+[![Latest Stable Version](https://img.shields.io/packagist/v/sminnee/phpunit-mock-objects.svg?style=flat-square)](https://packagist.org/packages/sminnee/phpunit-mock-objects)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.6-8892BF.svg?style=flat-square)](https://php.net/)
-[![Build Status](https://img.shields.io/travis/sebastianbergmann/phpunit-mock-objects/master.svg?style=flat-square)](https://travis-ci.org/sebastianbergmann/phpunit-mock-objects)
+[![Build Status](https://img.shields.io/travis/sminnee/phpunit-mock-objects/master.svg?style=flat-square)](https://travis-ci.org/sminnee/phpunit-mock-objects)
 
 # PHPUnit_MockObject
 
 **PHPUnit_MockObject** is the default mock object library for PHPUnit.
+
+**This is a fork of the original project to provide support for newer PHP versions to PHPUnit 5.**
 
 ## Requirements
 
