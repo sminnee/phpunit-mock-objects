@@ -14,11 +14,11 @@ class SingletonClass
     {
     }
 
-    final private function __sleep()
+    final public function __sleep()
     {
     }
 
-    final private function __wakeup()
+    final public function __wakeup()
     {
     }
 
