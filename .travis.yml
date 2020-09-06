@@ -9,7 +9,7 @@ matrix:
     - php: 7.2
     - php: 7.3
     - php: 7.4
-    - php: nightly
+    - php: 8.0snapshot
       env:
         - COMPOSER_UPDATE_ARG="--ignore-platform-reqs"
   
