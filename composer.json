@@ -29,7 +29,7 @@
         "sebastian/exporter": "^1.2 || ^2.0 || ^3"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.4"
+        "sminnee/phpunit": "^5.7.29"
     },
     "conflict": {
         "phpunit/phpunit": "<5.4.0"
