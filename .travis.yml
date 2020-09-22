@@ -1,5 +1,9 @@
 language: php
 
+env:
+  global:
+    - COMPOSER_ROOT_VERSION=3.4.x-dev
+
 matrix:
   fast_finish: true
   include:
