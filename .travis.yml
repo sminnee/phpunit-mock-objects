@@ -16,6 +16,7 @@ matrix:
     - php: nightly
       env:
         - COMPOSER_UPDATE_ARG="--ignore-platform-reqs"
+        - REQUIREMENTS="phpunit/phpunit:^9.3 --dev"
   
 sudo: false
 
@@ -24,6 +25,7 @@ before_install:
   - composer clear-cache
 
 install:
+  - if [ "$REQUIREMENTS" ]; then travis_retry composer require $REQUIREMENTS --no-interaction $COMPOSER_UPDATE_ARG; fi
   - travis_retry composer update --no-interaction --no-ansi --no-progress --no-suggest --optimize-autoloader --prefer-stable $COMPOSER_UPDATE_ARG
 
 script:
