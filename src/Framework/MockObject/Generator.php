@@ -819,7 +819,7 @@ class PHPUnit_Framework_MockObject_Generator
                 try {
                     $method = $class->getMethod($methodName);
 
-                    if ($this->canMockMethod($method)) {
+                    if ($this->canMockMethod($method, $isInterface)) {
                         $mockedMethods .= $this->generateMockedMethodDefinitionFromExisting(
                             $templateDir,
                             $method,
@@ -838,7 +838,7 @@ class PHPUnit_Framework_MockObject_Generator
             }
         } elseif ($isMultipleInterfaces) {
             foreach ($methods as $methodName) {
-                if ($this->canMockMethod($methodReflections[$methodName])) {
+                if ($this->canMockMethod($methodReflections[$methodName], true)) {
                     $mockedMethods .= $this->generateMockedMethodDefinitionFromExisting(
                         $templateDir,
                         $methodReflections[$methodName],
@@ -1118,9 +1118,11 @@ class PHPUnit_Framework_MockObject_Generator
      *
      * @return bool
      */
-    private function canMockMethod(ReflectionMethod $method)
+    private function canMockMethod(ReflectionMethod $method, $isInterface)
     {
-        if ($method->isConstructor() ||
+        // PHP 8 reports constructors in interfaces 'accurately', producing broken mocks
+        // Fixed upstream at https://github.com/sebastianbergmann/phpunit/commit/9fb2cb4e803aecdeca3333b5aff1913d837b3880
+        if ($method->isConstructor() && !$isInterface ||
             $method->isFinal() ||
             $method->isPrivate() ||
             $this->isMethodNameBlacklisted($method->getName())) {
