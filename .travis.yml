@@ -8,10 +8,6 @@ env:
 matrix:
   fast_finish: true
   include:
-    - php: 5.6
-    - php: 7.0
-    - php: 7.1
-    - php: 7.2
     - php: 7.3
     - php: 7.4
     - php: nightly
@@ -28,6 +24,8 @@ install:
   - travis_retry composer update --no-interaction --no-ansi --no-progress --no-suggest --optimize-autoloader --prefer-stable $COMPOSER_UPDATE_ARG
 
 script:
+  - cat ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - php -i | grep xdebug
   - ./vendor/bin/phpunit --coverage-clover=coverage.xml
 
 after_success:
