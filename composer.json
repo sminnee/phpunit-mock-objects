@@ -29,7 +29,8 @@
         "sebastian/exporter": "^1.2 || ^2.0 || ^3"
     },
     "require-dev": {
-        "sminnee/phpunit": "^5.7.29"
+        "sminnee/phpunit": "^5.7.29",
+        "phpunit/php-token-stream": "4.0.4 as 2.0.2"
     },
     "conflict": {
         "phpunit/phpunit": "<5.4.0"
