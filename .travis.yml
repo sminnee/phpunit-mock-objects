@@ -3,6 +3,7 @@ language: php
 env:
   global:
     - COMPOSER_ROOT_VERSION=3.4.x-dev
+    - XDEBUG_MODE=coverage # Required for Xdebug 3
 
 matrix:
   fast_finish: true
